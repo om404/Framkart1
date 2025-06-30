@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>FramKart.com</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width">
+  <style>
+    * {
+      box-sizing: border-box;
+
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      margin: 0;
+
+    }
+
+    .header {
+      padding: 80px;
+      text-align: center;
+      background: #1abc9c;
+      color: white;
+    }
+
+    .slider {
+      width: 100%;
+      max-height: 400px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 40px;
+    }
+    
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+
+    @keyframes slide {
+
+      0%,
+      20% {
+        transform: translateX(0);
+      }
+
+      25%,
+      45% {
+        transform: translateX(-100%);
+      }
+
+      50%,
+      70% {
+        transform: translateX(-200%);
+      }
+
+      75%,
+      95% {
+        transform: translateX(-300%);
+      }
+
+      100% {
+        transform: translateX(-400%);
+      }
+    }
+
+
+
+    .header h1 {
+      font-size: 40px;
+    }
+
+    .navbar {
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .navbar a.right {
+      float: right;
+    }
+
+    .logo {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .slide-text {
+      position: relative;
+      left: -200px;
+      opacity: 0;
+      animation: slideIn 2s forwards;
+    }
+
+    @keyframes slideIn {
+      to {
+        left: 0;
+        opacity: 1;
+      }
+    }
+
+    .glow-text {
+
+      color: rgb(244, 4, 4);
+      animation: colorGlow 2s infinite alternate;
+    }
+
+    @keyframes colorGlow {
+      from {
+        color: gold;
+        text-shadow: none;
+      }
+
+
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(18, 6, 6, 0.1);
+      margin: 10px;
+      padding: 16px;
+      width: 200px;
+      height: auto;
+
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+    }
+.settings-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.settings-icon {
+  font-size: 22px;
+  padding: 14px 16px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.logo {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  display: block;
+  margin: 30px auto;
+}
+
+
+.add-product-btn {
+  background-color: #28a745;
+  color: white !important;
+  text-align: center;
+  margin: 8px 16px;
+  border-radius: 6px;
+  padding: 10px;
+  display: block;
+  font-weight: bold;
+}
+
+.add-product-btn:hover {
+  background-color: #218838 !important;
+}
+
+    .product:hover {
+      transform: scale(1.03);
+      box-shadow: 0 14px 25px rgb(0, 0, 0);
+
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+    }
+
+    .product button {
+      background: #28a745;
+      color: #fff;
+      padding: 8px 16px;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .product button :hover {
+      background: #218838;
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .botton-nav a {
+      text-align: center;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .botton-nav span {
+      font-size: 20px;
+      display: block;
+    }
+
+    .bottom-nav small {
+      font-size: 12px;
+      display: block;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .row {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+
+
+    }
+
+  
+
+
+    .side {
+      -ms-flex: 30%;
+      flex: 30%;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+.settings-panel {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 9999;
+  transition: right 0.3s ease;
+}
+
+.settings-panel h3 {
+  margin-bottom: 15px;
+  color: #2e7d32;
+}
+
+.settings-panel a {
+  display: block;
+  padding: 12px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.settings-panel a:hover {
+  color: #28a745;
+}
+
+    .main {
+      -ms-flex: 70%;
+      flex: 70%;
+      background-color: white;
+      padding: 20px;
+    }
+   
+
+
+    .fakeimg {
+      background: #aaa;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .footer {
+      padding: 20px;
+      text-align: center;
+      background: #a2d56c;
+
+    }
+
+    @media screen and (max-width:400px) {
+      .navbar a {
+        float: none;
+        width: 100;
+
+      }
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header  slide-text">
+    <div class=" glow-text">
+
+    </div>
+  <div class="logo">
+    <img src="/logo.png"  width="100%" height="100%" alt="My Logo" class="logo">
+  </div>
+  </div>
+  <div class="navbar">
+
+    <a href="/om3.html"><span>🏠</span>
+      <small>Home</small></a>
+    <a href="search.html"><span>🔍</span>
+      <small>Search</small></a>
+    <a href="/orders.html"><span>📦</span>
+      <small>Orders</small></a>
+    <a href="Wishlist.html"><span>❤️</span>
+      <small>wishlist</small></a>
+    
+    <a href="/login.html" class="right">Login</a>
+
+    <a href="/contect.html" class="right"><span>📞</span>
+      <small>Contect</small></a>
+  
+<a href="/farmer.html" class="right"><span>🌿</span>
+      <small>farmer</small></a>
+ </div>
+</div>
+
+
+  <div class="row">
+    <div class="side">
+      
+      <div class="fackimg" style="height: 200px;"><img src="/ad.jpg"
+          width="170" heght="150"></div>
+
+      <p>At <strong>FramKart</strong>, We connect India farmer dirctly with you. We bring you fresh , seasonal
+        vegeatable straight from the fileds to
+        your home - no middlemen , no chemicals , just purity. </p>
+      <p>Our missions is to sapports local farmer and promote healthy eating.
+        Every order you place helps a small farmer earn a fair price and helps you
+        enjoy farm-fresh produce at affordable rates.
+      </p>
+
+
+
+
+
+
+
+    </div>
+
+    <div class=" main ">
+
+
+
+
+      <section class="hero">
+        <img src="/hero.jpg" alt="Fresh groceries">
+        <div class="hero-overlay">
+          <h1>Farm Fresh Groceries to Your Doorstep</h1>
+          <a class="btn" href="#products">Shop Now</a>
+        </div>
+      </section>
+
+      <div class="slider" id="slider">
+        <img class="slide" src="/cbens.webp" alt="Slide 1">
+        <img class="slide" src="/pumkin.webp" alt="Slide 2">
+        <img class="slide" src="/sgourd.webp" alt="Slide 3">
+        <img class="slide" src="/Lima-beans.png" alt="Slide 4">
+        <img class="slide" src="/bkgourd.jpg" alt="Slide 5">
+      </div>
+      </div>
+      <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+
+        function showSlide(index) {
+          slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+            setInterval(fetchProducts, 5000); // Refresh every 5 seconds
+
+          });
+        }
+
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % slides.length;
+          showSlide(currentIndex);
+        }
+
+        // Initialize
+        showSlide(currentIndex);
+        setInterval(nextSlide, 4000); // 4 seconds per slide
+      </script>
+      <script>
+  async function loadProducts() {
+    try {
+      const response = await fetch("http://localhost:3000/products");
+      const products = await response.json();
+
+      const vegContainer = document.getElementById("vegetable-container");
+      const fruitContainer = document.getElementById("fruit-container");
+
+      products.forEach(product => {
+  const productEl = document.createElement("div");
+  productEl.className = "product";
+  productEl.innerHTML = `
+    <img src="/uploads/${product.image}" alt="${product.name}">
+    <h3>${product.name}</h3>
+    <p class="product-description">${product.description}</p>
+    <p>₹${product.price}</p>
+    <button onclick='addToCart("${product.name}", ${product.price}, "/uploads/${product.image}")'>Add to Cart</button>
+
+  `;
+
+  if (product.category.toLowerCase() === "fruit") {
+    fruitContainer.appendChild(productEl);
+  } else {
+    vegContainer.appendChild(productEl);
+  }
+});
+
+    } catch (error) {
+      console.error("Failed to load products", error);
+    }
+  }
+ 
+
+  window.onload = loadProducts;
+</script>
+<script>function addToCart(name, price, image) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, image });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`${name} added to cart!`);
+}
+</script>
+
+
+
+
+
+    </div>
+  </div>
+  <div class="main">
+    <h2 style="margin-bottom: 20px;">Our Fresh Products</h2>
+
+    <!-- 🥦 Vegetable Section -->
+ <h3 style="margin: 20px 0 10px; color: #28a745;">🥦 Vegetables</h3>
+<div class="product-container" id="vegetable-container"></div>
+    </div>
+
+    <!-- 🍎 Fruit Section -->
+    <h3 style="margin: 30px 0 10px; color: #d35400;">🍎 Fruits</h3>
+<div class="product-container" id="fruit-container"></div>
+    </div>
+
+  </div>
+
+  </div>
+  </div>
+
+
+  <div class="footer">
+    <h4>all right are reserved @copyright 27,aug 2025, Om Desai</h4>
+
+  </div>
+</body>
+
+</html>
+
+</html>
