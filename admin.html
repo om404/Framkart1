@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - All Orders</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #28a745;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #28a745;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h2>📋 FramKart Admin Panel - Orders</h2>
+  <table id="orders-table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Pincode</th>
+        <th>Products</th>
+        <th>Amount (₹)</th>
+        <th>Payment Mode</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function loadOrders() {
+      const res = await fetch("http://localhost:3000/admin/all-orders");
+      const orders = await res.json();
+      const table = document.querySelector("#orders-table tbody");
+
+      orders.forEach(order => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${order.order_id}</td>
+          <td>${order.name}</td>
+          <td>${order.phone}</td>
+          <td>${order.address}</td>
+          <td>${order.pincode}</td>
+          <td>${order.products}</td>
+          <td>₹${order.amount}</td>
+          <td>${order.payment_mode}</td>
+          <td>${order.status}</td>
+          <td>${new Date(order.order_date).toLocaleString()}</td>
+        `;
+        table.appendChild(row);
+      });
+    }
+
+    loadOrders();
+  </script>
+</body>
+</html>

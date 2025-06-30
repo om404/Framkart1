@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - FramKart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1570158268183-d296b2892211?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      color: #fff;
+    }
+
+    h1 {
+      margin: 30px 0 15px;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    .register-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 30px 25px;
+      width: 90%;
+      max-width: 400px;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 16px;
+      resize: none;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #00b4db, #0083b0);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background: linear-gradient(45deg, #0083b0, #00b4db);
+    }
+
+    p {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    a {
+      color: #00ffff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .register-container {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>New Register Form</h1>
+
+  <div class="register-container">
+    <form action="index.html" method="get" onsubmit="return validateForm()">
+
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" name="fullname" required>
+
+      <label for="gmail">Gmail / Mobile No:</label>
+      <input type="text" id="gmail" name="gmail" required>
+
+      <!-- ✅ OTP section added here -->
+      <label for="otp">Enter OTP:</label>
+      <input type="text" id="otp" name="otp" maxlength="6" required>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="pincode">Pincode:</label>
+      <input type="text" id="pincode" name="pincode" required>
+
+      <label for="createPassword">Create Password:</label>
+      <input type="password" id="createPassword" name="createPassword" required>
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+      <input type="submit" value="Register Here">
+    </form>
+
+    <p>Already have an account? <a href="login.html">Login here.</a></p>
+  </div>
+
+  <script>
+    function validateForm() {
+      const createPassword = document.getElementById("createPassword").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const pincode = document.getElementById("pincode").value;
+      const otp = document.getElementById("otp").value;
+
+      // Alphanumeric check
+      const isAlphanumeric = /^[a-zA-Z0-9]+$/.test(createPassword);
+
+      if (!isAlphanumeric) {
+        alert("Password must be alphanumeric (letters and numbers only).");
+        return false;
+      }
+
+      if (createPassword !== confirmPassword) {
+        alert("Passwords do not match!");
+        return false;
+      }
+
+      if (!/^\d{6}$/.test(pincode)) {
+        alert("Pincode must be exactly 6 digits.");
+        return false;
+      }
+
+      if (!/^\d{4,6}$/.test(otp)) {
+        alert("OTP must be 4 to 6 digits.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+
+</body>
+</html>

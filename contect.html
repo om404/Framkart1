@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | FramKart</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0fff0, #e0f7fa);
+      color: #333;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .contact-container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-container:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #009688;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 16px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      background-color: #25d366;
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #128c7e;
+    }
+
+    .icon {
+      margin-right: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .contact-container {
+        padding: 25px;
+      }
+
+      h2 {
+        font-size: 26px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <h2>📬 Contact Us</h2>
+    <p><span class="icon">📍</span><strong>Location:</strong> Deogaon (R), Tq. Kannad, Dist. Chh. Sambhajinagar</p>
+    <p><span class="icon">📞</span><strong>Phone:</strong> 7821859956</p>
+    <p><span class="icon">📩</span><strong>Email:</strong> supports@framkart.com</p>
+    <p><span class="icon">💬</span><strong>WhatsApp:</strong>
+      <a href="https://wa.me/7821859956" target="_blank">Chat Now</a>
+    </p>
+  </div>
+</body>
+</html>
